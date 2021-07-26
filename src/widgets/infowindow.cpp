@@ -50,19 +50,24 @@ void InfoWindow::initLabels()
 
     QLabel* licenseTitleLabel = new QLabel(tr("<u><b>License</b></u>"), this);
     licenseTitleLabel->setAlignment(Qt::AlignHCenter);
+    licenseTitleLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
     m_layout->addWidget(licenseTitleLabel);
 
     QLabel* licenseLabel = new QLabel(QStringLiteral("GPLv3+"), this);
     licenseLabel->setAlignment(Qt::AlignHCenter);
+    licenseLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
     m_layout->addWidget(licenseLabel);
     m_layout->addStretch();
 
     QLabel* versionTitleLabel = new QLabel(tr("<u><b>Version</b></u>"), this);
     versionTitleLabel->setAlignment(Qt::AlignHCenter);
+    versionTitleLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
+
     m_layout->addWidget(versionTitleLabel);
     QString versionMsg = generateVersionString();
     QLabel* versionLabel = new QLabel(versionMsg, this);
     versionLabel->setAlignment(Qt::AlignHCenter);
+    versionLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
     m_layout->addWidget(versionLabel);
 
     QPushButton* copyVersion = new QPushButton("Copy Info", this);
