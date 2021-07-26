@@ -10,6 +10,7 @@
 #include <QKeyEvent>
 #include <QLabel>
 #include <QPushButton>
+#include <QSysInfo>
 #include <QVBoxLayout>
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
@@ -62,13 +63,21 @@ void InfoWindow::initLabels()
     QLabel* versionTitleLabel = new QLabel(tr("<u><b>Version</b></u>"), this);
     versionTitleLabel->setAlignment(Qt::AlignHCenter);
     versionTitleLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
-
     m_layout->addWidget(versionTitleLabel);
+
     QString versionMsg = generateVersionString();
     QLabel* versionLabel = new QLabel(versionMsg, this);
     versionLabel->setAlignment(Qt::AlignHCenter);
     versionLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
     m_layout->addWidget(versionLabel);
+
+    QString kernelInfo =
+      QSysInfo::kernelType() + ": " + QSysInfo::kernelVersion() + "\n" +
+      QSysInfo::productType() + ": " + QSysInfo::productVersion();
+    QLabel* kernelLabel = new QLabel(kernelInfo, this);
+    kernelLabel->setAlignment(Qt::AlignHCenter);
+    kernelLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    m_layout->addWidget(kernelLabel);
 
     QPushButton* copyVersion = new QPushButton("Copy Info", this);
     m_layout->addWidget(copyVersion);
